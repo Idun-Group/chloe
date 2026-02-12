@@ -1,0 +1,73 @@
+[project]
+name = "chloe-api"
+version = "1.0.4"
+description = "Récupération et analyse de profils LinkedIn avec IA"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+authors = [
+    { name = "Idun Group", email = "contact@idun-group.com" }
+]
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "gunicorn",
+    "starlette",
+    "python-dotenv",
+    "httpx",
+    "requests",
+    "python-multipart",
+    "psycopg",
+    "psycopg-pool",
+    "psycopg-binary",
+    "langchain-openai",
+    "langchain-google-genai",
+    "langchain-tavily",
+    "langgraph",
+    "langgraph-checkpoint-postgres",
+    "langchain-core",
+    "mcp",
+    "langfuse",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-proto",
+    "opentelemetry-distro",
+    "opentelemetry-exporter-gcp-trace",
+    "opentelemetry-exporter-gcp-monitoring",
+    "opentelemetry-exporter-otlp",
+    "opentelemetry-instrumentation-fastapi",
+    "opentelemetry-instrumentation-httpx",
+    "opentelemetry-exporter-otlp-proto-http",
+    "opentelemetry-instrumentation-psycopg2",
+    "opentelemetry-instrumentation-langchain",
+    "opentelemetry-instrumentation",
+    "opentelemetry-instrumentation-logging",
+    "email-validator",
+    "psutils",
+    "streamlit",
+    "idun-agent-engine==0.4.2.dev20260212160836",
+    "idun-agent-schema==0.4.2.dev20260212132217",
+    "langchain-apify",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.uv]
+prerelease = "allow"
+override-dependencies = ["langchain-core>=0.3.15"]
+
+[tool.uv.sources]
+idun-agent-engine = { index = "testpypi" }
+idun-agent-schema = { index = "testpypi" }
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+explicit = true

@@ -1,0 +1,11 @@
+server:
+  api:
+    port: 8001
+agent:
+  type: "LANGGRAPH"
+  config:
+    name: "Chloé"
+    graph_definition: "app/agent/workflow_graph.py:app"
+    input_schema_definition: "invoke_request"
+    checkpointer:
+      type: "memory"
