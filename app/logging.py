@@ -209,7 +209,9 @@ def log_response(
     speed_emoji = (
         LogEmoji.FAST
         if duration_ms < 1000
-        else LogEmoji.SLOW if duration_ms > 5000 else LogEmoji.TIMER
+        else LogEmoji.SLOW
+        if duration_ms > 5000
+        else LogEmoji.TIMER
     )
     logger.info(
         f"{emoji} {speed_emoji} Status: {status_code} | Duration: {duration_ms:.2f}ms",

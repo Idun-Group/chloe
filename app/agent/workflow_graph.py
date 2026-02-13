@@ -6,7 +6,7 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, StateGraph
 
 from app.agent.graph_state import ChloeState
-from app.agent.le_wagon_context import LE_WAGON_CONTEXT
+from app.agent.context import DEFAULT_COMPANY_CONTEXT
 from app.agent.prompts import (
     INTERACTIONS_INSIGHT_PROMPT,
     OUTREACH_MESSAGES_PROMPT,
@@ -233,9 +233,13 @@ async def generate_profile_insight(state: ChloeState, config: RunnableConfig):
         # Get insights language from request
         insights_languages = state["invoke_request"].insights_languages.value
 
-        # Build prompt
-        prompt = PROFILE_INSIGHT_PROMPT.format(
-            le_wagon_context=LE_WAGON_CONTEXT,
+        company_context = state["invoke_request"].custom_company_context or DEFAULT_COMPANY_CONTEXT
+        company_name = state["invoke_request"].company_name or settings.company_name
+        prompt_template = state["invoke_request"].custom_profile_prompt or PROFILE_INSIGHT_PROMPT
+
+        prompt = prompt_template.format(
+            company_context=company_context,
+            company_name=company_name,
             insights_languages=insights_languages,
             date_now=date_now,
             full_name=lead.full_name or "Unknown",
@@ -323,9 +327,13 @@ async def generate_interactions_insight(state: ChloeState, config: RunnableConfi
         # Get insights language from request
         insights_languages = state["invoke_request"].insights_languages.value
 
-        # Build prompt
-        prompt = INTERACTIONS_INSIGHT_PROMPT.format(
-            le_wagon_context=LE_WAGON_CONTEXT,
+        company_context = state["invoke_request"].custom_company_context or DEFAULT_COMPANY_CONTEXT
+        company_name = state["invoke_request"].company_name or settings.company_name
+        prompt_template = state["invoke_request"].custom_interactions_prompt or INTERACTIONS_INSIGHT_PROMPT
+
+        prompt = prompt_template.format(
+            company_context=company_context,
+            company_name=company_name,
             insights_languages=insights_languages,
             date_now=date_now,
             full_name=lead.full_name or "Unknown",
@@ -443,9 +451,13 @@ async def generate_outreach_messages(state: ChloeState, config: RunnableConfig):
             f"{LogEmoji.INFO} Using outreach language: {outreach_messages_languages}"
         )
 
-        # Build prompt
-        prompt = OUTREACH_MESSAGES_PROMPT.format(
-            le_wagon_context=LE_WAGON_CONTEXT,
+        company_context = state["invoke_request"].custom_company_context or DEFAULT_COMPANY_CONTEXT
+        company_name = state["invoke_request"].company_name or settings.company_name
+        prompt_template = state["invoke_request"].custom_outreach_prompt or OUTREACH_MESSAGES_PROMPT
+
+        prompt = prompt_template.format(
+            company_context=company_context,
+            company_name=company_name,
             date_now=date_now,
             full_name=lead.full_name or "Unknown",
             first_name=lead.first_name or "Unknown",

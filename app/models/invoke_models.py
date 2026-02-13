@@ -108,6 +108,28 @@ class InvokeRequest(BaseModel):
         description="AI processing mode: 'fast' (lower quality, faster), 'balanced' (recommended), or 'pro' (highest quality, slower)",
     )
 
+    # === CUSTOM PROMPTS (Optional) ===
+    company_name: Optional[str] = Field(
+        default=None,
+        description="Your company name. Used in prompts for personalization.",
+    )
+    custom_company_context: Optional[str] = Field(
+        default=None,
+        description="Custom company context to use instead of default. Include company info, offerings, values, target customers, etc.",
+    )
+    custom_profile_prompt: Optional[str] = Field(
+        default=None,
+        description="Custom prompt template for profile insight generation. Must include placeholders: {company_context}, {company_name}, {date_now}, {full_name}, etc.",
+    )
+    custom_interactions_prompt: Optional[str] = Field(
+        default=None,
+        description="Custom prompt template for interactions insight generation.",
+    )
+    custom_outreach_prompt: Optional[str] = Field(
+        default=None,
+        description="Custom prompt template for outreach messages generation.",
+    )
+
     @field_validator("linkedin_url")
     @classmethod
     def validate_linkedin_url(cls, v: str) -> str:
@@ -233,7 +255,7 @@ class InvokeResponse(BaseModel):
                                 "Integrating AI into existing workflows",
                             ],
                             "approach_angles": [
-                                "Le Wagon's AI product training for teams",
+                                "{company_name}'s AI product training for teams",
                                 "Upskilling programs for product managers",
                             ],
                             "engagement_style": "Thoughtful, shares insights, engages with technical content.",
@@ -246,7 +268,7 @@ class InvokeResponse(BaseModel):
                                 {
                                     "post_id": "post_id_001",
                                     "post_url": "https://www.linkedin.com/posts/john-doe_ai-product-innovation-activity-123456789",
-                                    "comment": "Great insights John! At Le Wagon we're seeing similar trends...",
+                                    "comment": "Great insights John! At {company_name} we're seeing similar trends...",
                                 }
                             ],
                             "linkedin_messages": {

@@ -278,7 +278,7 @@ class EmailMessage(BaseModel):
     body_html: Optional[str] = Field(None, description="HTML email body")
     html: Optional[str] = Field(
         default="Restricted: Get a SSR-Rendered HTML Email with your template by contacting contact@idun-group.com",
-        description="SSR-Rendered HTML Email"
+        description="SSR-Rendered HTML Email",
     )
 
 

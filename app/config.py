@@ -9,6 +9,7 @@ from functools import lru_cache
 
 class LLMProvider(StrEnum):
     """Supported LLM providers"""
+
     OPENAI = "openai"
     GEMINI = "gemini"
 
@@ -54,6 +55,9 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.0
     openai_api_key: str = ""
     gemini_api_key: str = ""
+
+    # Company Configuration
+    company_name: str = "Company Name"
 
     class Config:
         env_file = ".env"
