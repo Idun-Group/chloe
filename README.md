@@ -42,6 +42,8 @@ Variables requises dans `.env` :
 | `OPENAI_API_KEY` | Clé API OpenAI (si provider openai) |
 | `GEMINI_API_KEY` | Clé API Gemini (si provider gemini) |
 | `APIFY_API_TOKEN` | Token [Apify](https://apify.com/) pour le scraping LinkedIn |
+| `LANGFUSE_PUBLIC_KEY` | Clé publique [Langfuse](https://langfuse.com/) (optionnel) |
+| `LANGFUSE_SECRET_KEY` | Clé secrète Langfuse (optionnel) |
 
 ---
 
