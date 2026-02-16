@@ -101,6 +101,9 @@ Avec Idun Agent Platform, vous pouvez étendre Chloé avec :
 - **MCPs** (Model Context Protocol) - Connectez des outils externes à votre agent
   👉 [Documentation MCP](https://idun-group.github.io/idun-agent-platform/mcp/overview/)
 
+- **Mémoire** - Utiliser une mémoire Postgres ou SQLite pour enregistrer vos interactions
+  👉 [Documentation Mémoire](https://idun-group.github.io/idun-agent-platform/memory/memory-langgraph/)
+
 ---
 
 ## Support
@@ -108,3 +111,6 @@ Avec Idun Agent Platform, vous pouvez étendre Chloé avec :
 contact@idun-group.com
 
 ![https://github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/branding/blob/main/IAP%20-%20Logo%20Text.png?raw=true)
+
+Pour propuler vos agents LangChain, LangGraph ou ADK jeter un oeil à la plateforme open-source:
+👉 [github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/idun-agent-platform) - N'hésitez pas à mettre une étoile !
