@@ -34,17 +34,46 @@ st.markdown(
     }
     .main-header {
         text-align: center;
-        padding: 0.5rem 0 1rem 0;
+        padding: 2rem 0 2.5rem 0;
     }
     .main-header h1 {
-        font-size: 2rem;
+        font-size: 3.5rem;
         color: #fff;
-        margin-bottom: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        letter-spacing: -1px;
     }
-    .main-header p {
+    .main-header .subtitle {
+        color: #5865F2;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .main-header .description {
+        color: #999;
+        font-size: 1rem;
+        max-width: 550px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.6;
+    }
+    .main-header .powered-by {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: #16162a;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid #2a2a4a;
+        font-size: 0.85rem;
         color: #888;
-        font-size: 0.9rem;
-        margin-top: 0.3rem;
+    }
+    .main-header .powered-by a {
+        color: #5865F2;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .main-header .powered-by a:hover {
+        text-decoration: underline;
     }
     .stTextArea > div > div > textarea {
         background-color: #1e1e3a !important;
@@ -287,16 +316,18 @@ st.markdown(
     """
 <div class="main-header">
     <h1>🎯 Chloé</h1>
-    <p>Assistant IA de Prospection LinkedIn</p>
-    <p style="max-width: 600px; margin: 1rem auto 0; color: #666; font-size: 0.85rem;">
-        Analysez un profil LinkedIn et obtenez des insights sur le lead, ses centres d'intérêt,
-        et des messages de prospection personnalisés.
+    <p class="subtitle">Assistant IA de Prospection LinkedIn</p>
+    <p class="description">
+        Analysez un profil LinkedIn et obtenez des insights détaillés sur le lead,
+        ses centres d'intérêt, et des messages de prospection personnalisés.
     </p>
-    <p style="margin-top: 1rem; font-size: 0.8rem; color: #555;">
-        🏭 Backend déployé avec: <a href="https://github.com/Idun-Group/idun-agent-platform" target="_blank" style="color: #5865F2;">Idun Agent Platform ⭐ </a>
-        <br>
-        Par <a href="https://www.idun-group.com/" target="_blank" style="color: #5865F2;">Idun Group</a>
-    </p>
+    <div class="powered-by">
+        <span>Powered by <a href="https://github.com/Idun-Group/idun-agent-platform" target="_blank">Idun Agent Platform</a> ⭐</span>
+        <span>·</span>
+        <span>By <a href="https://www.idun-group.com/" target="_blank">Idun Group</a></span>
+        <span>·</span>
+        <span>📧 contact@idun-group.com</span>
+    </div>
 </div>
 """,
     unsafe_allow_html=True,
@@ -312,7 +343,7 @@ with col1:
         label_visibility="collapsed",
     )
 with col2:
-    analyze_btn = st.button("🚀", disabled=not linkedin_url, use_container_width=True)
+    analyze_btn = st.button("🚀 Analyser", disabled=not linkedin_url, use_container_width=True)
 
 if "context_expanded" not in st.session_state:
     st.session_state.context_expanded = True
@@ -391,7 +422,11 @@ if analyze_btn:
 if st.session_state.results:
     result = st.session_state.results
     st.markdown(
-        "<hr style='border: none; border-top: 2px solid #334155; margin: 2rem 0;'>",
+        "<hr style='border: none; border-top: 1px solid #2a2a4a; margin: 2rem 0;'>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<h2 style='color: #fff; font-size: 1.5rem; margin-bottom: 1rem;'>Résultats de l'analyse</h2>",
         unsafe_allow_html=True,
     )
 
