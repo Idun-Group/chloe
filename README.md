@@ -68,7 +68,7 @@ server:
   api:
     port: 8001
 agent:
-  type: ""
+  type: "LANGGRAPH"
   config:
     name: "Chloé"
     graph_definition: "app/agent/workflow_graph.py:app"
