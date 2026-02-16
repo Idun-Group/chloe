@@ -113,4 +113,5 @@ contact@idun-group.com
 ![https://github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/branding/blob/main/IAP%20-%20Logo%20Text.png?raw=true)
 
 Pour propuler vos agents LangChain, LangGraph ou ADK jeter un oeil à la plateforme open-source:
+
 👉 [github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/idun-agent-platform) - N'hésitez pas à mettre une étoile !
