@@ -9,6 +9,9 @@ Donnez-lui une URL LinkedIn, et en quelques secondes vous obtenez :
 - **Insight Interactions** : style d'engagement, points de douleur, angles d'approche
 - **Messages Outreach** : messages LinkedIn et emails personnalisés, prêts à envoyer
 
+![Chloé UI](images/chloe.png)
+
+
 ---
 
 ## Quick Start
@@ -34,7 +37,6 @@ Variables requises dans `.env` :
 
 | Variable | Description |
 |----------|-------------|
-| `POSTGRESQL_URI` | URI PostgreSQL pour le state |
 | `LLM_PROVIDER` | `openai` ou `gemini` |
 | `LLM_MODEL_NAME` | Ex: `gpt-4o`, `gemini-2.0-flash` |
 | `OPENAI_API_KEY` | Clé API OpenAI (si provider openai) |
@@ -66,7 +68,7 @@ server:
   api:
     port: 8001
 agent:
-  type: "LANGGRAPH"
+  type: ""
   config:
     name: "Chloé"
     graph_definition: "app/agent/workflow_graph.py:app"
@@ -106,4 +108,3 @@ Avec Idun Agent Platform, vous pouvez étendre Chloé avec :
 contact@idun-group.com
 
 ![https://github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/branding/blob/main/IAP%20-%20Logo%20Text.png?raw=true)
-
