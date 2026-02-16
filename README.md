@@ -60,7 +60,7 @@ Chloé est un **agent LangGraph** déployé avec **[Idun Agent Platform](https:/
 1. **LangGraph Workflow** (`app/agent/workflow_graph.py`)
    Le workflow orchestre les étapes : récupération du profil LinkedIn via [Apify](https://apify.com/), extraction des posts/réactions, génération des insights avec le LLM.
 
-2. **Idun Agent Platform**
+2. **[Idun Agent Platform](https://github.com/Idun-Group/idun-agent-platform)**
    L'API REST, la documentation Swagger, et l'observabilité (Langfuse) sont générées automatiquement par la plateforme à partir du fichier `config.yaml` :
 
 ```yaml
