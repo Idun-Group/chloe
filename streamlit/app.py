@@ -547,30 +547,29 @@ if st.session_state.results:
                 unsafe_allow_html=True,
             )
 
-            col1, col2 = st.columns(2)
-            with col1:
-                if interactions_insight.get("pain_points"):
-                    st.markdown(
-                        "<div class='result-label'>Points de douleur</div>",
-                        unsafe_allow_html=True,
-                    )
-                    for point in interactions_insight["pain_points"]:
-                        st.markdown(
-                            f"<div style='color: #fca5a5; padding: 8px 0;'>• {point}</div>",
-                            unsafe_allow_html=True,
-                        )
+            if interactions_insight.get("pain_points"):
+                pain_points_html = "".join([f"<li>{point}</li>" for point in interactions_insight["pain_points"]])
+                st.markdown(
+                    f"""
+                    <div class='insight-section' style='border-left-color: #ef4444;'>
+                        <div class='result-label' style='color: #ef4444;'>Points de douleur</div>
+                        <ul style='color: #e2e8f0; margin: 0; padding-left: 1.2rem; line-height: 2;'>{pain_points_html}</ul>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
 
-            with col2:
-                if interactions_insight.get("approach_angles"):
-                    st.markdown(
-                        "<div class='result-label'>Angles d'approche</div>",
-                        unsafe_allow_html=True,
-                    )
-                    for angle in interactions_insight["approach_angles"]:
-                        st.markdown(
-                            f"<div style='color: #86efac; padding: 8px 0;'>• {angle}</div>",
-                            unsafe_allow_html=True,
-                        )
+            if interactions_insight.get("approach_angles"):
+                angles_html = "".join([f"<li>{angle}</li>" for angle in interactions_insight["approach_angles"]])
+                st.markdown(
+                    f"""
+                    <div class='insight-section' style='border-left-color: #22c55e;'>
+                        <div class='result-label' style='color: #22c55e;'>Angles d'approche</div>
+                        <ul style='color: #e2e8f0; margin: 0; padding-left: 1.2rem; line-height: 2;'>{angles_html}</ul>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
         else:
             st.info("Non généré")
 
