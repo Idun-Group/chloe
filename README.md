@@ -42,8 +42,8 @@ Variables requises dans `.env` :
 | `OPENAI_API_KEY` | Clé API OpenAI (si provider openai) |
 | `GEMINI_API_KEY` | Clé API Gemini (si provider gemini) |
 | `APIFY_API_TOKEN` | Token [Apify](https://apify.com/) pour le scraping LinkedIn |
-| `LANGFUSE_PUBLIC_KEY` | Clé publique [Langfuse](https://langfuse.com/) (optionnel) |
-| `LANGFUSE_SECRET_KEY` | Clé secrète Langfuse (optionnel) |
+
+Une fois lancé, naviguez vers `http://localhost:8501` pour accéder à l'interface Streamlit.
 
 ---
 
@@ -85,6 +85,21 @@ Le scraping LinkedIn est réalisé via les actors [Apify](https://apify.com/) :
 - [apimaestro/linkedin-profile-detail](https://apify.com/apimaestro/linkedin-profile-detail)
 - [apimaestro/linkedin-profile-posts](https://apify.com/apimaestro/linkedin-profile-posts)
 - [apimaestro/linkedin-profile-reactions](https://apify.com/apimaestro/linkedin-profile-reactions)
+
+---
+
+## Aller plus loin
+
+Avec Idun Agent Platform, vous pouvez étendre Chloé avec :
+
+- **Observabilité** (Langfuse, Phoenix, GCP Trace) - Tracez et debuggez vos agents en production
+  👉 [Documentation Observability](https://idun-group.github.io/idun-agent-platform/observability/overview/)
+
+- **Guardrails** - Ajoutez des garde-fous pour sécuriser les entrées/sorties de l'agent
+  👉 [Documentation Guardrails](https://idun-group.github.io/idun-agent-platform/guardrails/overview/)
+
+- **MCPs** (Model Context Protocol) - Connectez des outils externes à votre agent
+  👉 [Documentation MCP](https://idun-group.github.io/idun-agent-platform/mcp/overview/)
 
 ---
 
