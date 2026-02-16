@@ -9,3 +9,10 @@ agent:
     input_schema_definition: "invoke_request"
     checkpointer:
       type: "memory"
+
+observability:
+  - provider: "LANGFUSE"
+    enabled: true
+    config:
+      host: "https://cloud.langfuse.com"
+      run_name: "chloé-open"

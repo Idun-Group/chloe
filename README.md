@@ -47,7 +47,11 @@ Variables requises dans `.env` :
 
 ## Architecture
 
-Chloé est un **agent LangGraph** déployé avec [Idun Agent Platform](https://github.com/Idun-Group/idun-agent-platform).
+Chloé est un **agent LangGraph** déployé avec **[Idun Agent Platform](https://github.com/Idun-Group/idun-agent-platform)** ⭐
+
+> **Idun Agent Platform** est notre solution open-source pour déployer des agents LangGraph/ADK/Haystack en production. La plateforme génère automatiquement une API REST, l'observabilité, Tools/MCPs et les Guardrails, à partir d'un simple fichier de configuration. Zéro code FastAPI à écrire.
+>
+> 👉 [github.com/Idun-Group/idun-agent-platform](https://github.com/Idun-Group/idun-agent-platform) - N'hésitez pas à mettre une étoile !
 
 ### Comment ça marche
 
