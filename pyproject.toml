@@ -47,8 +47,8 @@ dependencies = [
     "email-validator",
     "psutils",
     "streamlit",
-    "idun-agent-engine==0.4.2.dev20260212160836",
-    "idun-agent-schema==0.4.2.dev20260212132217",
+    "idun-agent-engine==0.4.3",
+    "idun-agent-schema==0.4.3",
     "langchain-apify",
 ]
 
@@ -63,11 +63,4 @@ include = ["app*"]
 prerelease = "allow"
 override-dependencies = ["langchain-core>=0.3.15"]
 
-[tool.uv.sources]
-idun-agent-engine = { index = "testpypi" }
-idun-agent-schema = { index = "testpypi" }
 
-[[tool.uv.index]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-explicit = true

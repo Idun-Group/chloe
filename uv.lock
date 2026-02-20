@@ -629,8 +629,8 @@ requires-dist = [
     { name = "fastapi" },
     { name = "gunicorn" },
     { name = "httpx" },
-    { name = "idun-agent-engine", specifier = "==0.4.2.dev20260212160836", index = "https://test.pypi.org/simple/" },
-    { name = "idun-agent-schema", specifier = "==0.4.2.dev20260212132217", index = "https://test.pypi.org/simple/" },
+    { name = "idun-agent-engine", specifier = "==0.4.3" },
+    { name = "idun-agent-schema", specifier = "==0.4.3" },
     { name = "langchain-apify" },
     { name = "langchain-core" },
     { name = "langchain-google-genai" },
@@ -1878,8 +1878,8 @@ wheels = [
 
 [[package]]
 name = "idun-agent-engine"
-version = "0.4.2.dev20260212160836"
-source = { registry = "https://test.pypi.org/simple/" }
+version = "0.4.3"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ag-ui-adk" },
     { name = "ag-ui-langgraph" },
@@ -1925,22 +1925,22 @@ dependencies = [
     { name = "textual" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://test-files.pythonhosted.org/packages/55/e4/6b18932a740882227519b641d6ffe18cb5c1d600c29a00b77aa524e1ca6e/idun_agent_engine-0.4.2.dev20260212160836.tar.gz", hash = "sha256:c90588345b11ebd06e81749f2bd534f9476ce03d7471ceabc90e954f46653030", size = 68240 }
+sdist = { url = "https://files.pythonhosted.org/packages/81/77/b6eb63135daf4b075d3ed9f46106b7d421da8465c0026efa6c24a1434738/idun_agent_engine-0.4.3.tar.gz", hash = "sha256:2d80e32fed824157af95c51f452ce9d3c1bca08d6b09ce2b5167770b12b976af", size = 67899 }
 wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/a6/ae/767761304488daebf66d936ed3cd0335f7e52ac67a35ae4ba93e790d3542/idun_agent_engine-0.4.2.dev20260212160836-py3-none-any.whl", hash = "sha256:a1b507eb546b32e1851911f471663a0f7f147ebd8caa76b02b266a880af09407", size = 97023 },
+    { url = "https://files.pythonhosted.org/packages/32/d1/2c4bb2d5c0613b703ba06c9fd862053135f618a3be684a1bd252a34e8d26/idun_agent_engine-0.4.3-py3-none-any.whl", hash = "sha256:cd581754074a90f53c7613806e85086b6f66df09321d606fad33b8d5dc690f37", size = 96840 },
 ]
 
 [[package]]
 name = "idun-agent-schema"
-version = "0.4.2.dev20260212132217"
-source = { registry = "https://test.pypi.org/simple/" }
+version = "0.4.3"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://test-files.pythonhosted.org/packages/5f/41/3f7177edecda18fae45ac67659eb6a5e5c5b08c9315e8a8ae1f51c0c5a41/idun_agent_schema-0.4.2.dev20260212132217.tar.gz", hash = "sha256:af593913059968b1033b28824b971c507ca8bfd4fa5beea8a644795be04f0446", size = 14514 }
+sdist = { url = "https://files.pythonhosted.org/packages/02/88/73fd9839283f1b8da0d90c9c90599590d45e0dc5ee94d689f3cf8275dc62/idun_agent_schema-0.4.3.tar.gz", hash = "sha256:e214d07b4fec2b170e1a68775a61939bcb5eed318aaaf80d3efe3bb0860ea349", size = 14364 }
 wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/1c/66/9e5b703b1a8175ca8b0c137916a3dda57747bcb057046044fca614aec736/idun_agent_schema-0.4.2.dev20260212132217-py3-none-any.whl", hash = "sha256:33eb07fcb893575faae981773de919c31254d52cfa69df17b7b72981eea98b8e", size = 24354 },
+    { url = "https://files.pythonhosted.org/packages/52/3b/eb7cfcbadae3c4e9fbad1b8343f3d01e28c6253b46660d2dbd1270e821cd/idun_agent_schema-0.4.3-py3-none-any.whl", hash = "sha256:cf9dd4ed7970aaff094272b17c249fa706c54ad589a730036e8c8291be18ad12", size = 24215 },
 ]
 
 [[package]]
