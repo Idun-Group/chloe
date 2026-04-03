@@ -18,7 +18,7 @@ Donnez-lui une URL LinkedIn, et en quelques secondes vous obtenez :
 
 ```bash
 # 1. Clone & setup
-git clone <repo>
+git clone https://github.com/Idun-Group/chloe.git
 cd chloe-api
 cp .env.example .env
 
