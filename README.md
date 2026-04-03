@@ -20,13 +20,13 @@ Donnez-lui une URL LinkedIn, et en quelques secondes vous obtenez :
 
 ```bash
 chmod +x scripts/setup-mac.sh
-./scripts/setup-mac.sh
+source scripts/setup-mac.sh
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\setup-windows.ps1
+. .\scripts\setup-windows.ps1
 ```
 
 Ces scripts :
