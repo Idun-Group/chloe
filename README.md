@@ -14,12 +14,35 @@ Donnez-lui une URL LinkedIn, et en quelques secondes vous obtenez :
 
 ---
 
+## Installation simple
+
+### macOS
+
+```bash
+chmod +x scripts/setup-mac.sh
+./scripts/setup-mac.sh
+```
+
+### Windows (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\setup-windows.ps1
+```
+
+Ces scripts :
+
+- installent `uv` si besoin
+- verifient que Python `3.12` ou `3.13` est disponible
+- installent les dependances du projet avec `uv sync`
+
+---
+
 ## Quick Start
 
 ```bash
 # 1. Clone & setup
 git clone https://github.com/Idun-Group/chloe.git
-cd chloe-api
+cd chloe
 cp .env.example .env
 
 # 2. Configurer .env avec vos clés API (voir section Configuration)
