@@ -2,10 +2,16 @@
 Chloé - Assistant IA de Prospection LinkedIn
 """
 
+import json
+import uuid
+
 import streamlit as st
-import requests
+import httpx
+from httpx_sse import connect_sse
 import time
 import threading
+from pydantic import TypeAdapter
+from ag_ui.core import RunAgentInput, UserMessage, Event, StateSnapshotEvent
 
 st.set_page_config(
     page_title="Chloé - Prospection IA",
@@ -281,7 +287,8 @@ if "company_context" not in st.session_state:
 if "results" not in st.session_state:
     st.session_state.results = None
 
-API_URL = "http://localhost:8001/agent/invoke"
+API_URL = "http://localhost:8000/agent/run"
+event_adapter = TypeAdapter(Event)
 
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
@@ -343,7 +350,9 @@ with col1:
         label_visibility="collapsed",
     )
 with col2:
-    analyze_btn = st.button("🚀 Analyser", disabled=not linkedin_url, use_container_width=True)
+    analyze_btn = st.button(
+        "🚀 Analyser", disabled=not linkedin_url, use_container_width=True
+    )
 
 if "context_expanded" not in st.session_state:
     st.session_state.context_expanded = True
@@ -363,7 +372,7 @@ with st.expander("📝 Contexte Entreprise", expanded=st.session_state.context_e
 if analyze_btn:
     loader_placeholder = st.empty()
 
-    payload = {
+    invoke_request = {
         "linkedin_url": linkedin_url,
         "posts_limit": posts_limit,
         "reactions_limit": reactions_limit,
@@ -375,20 +384,43 @@ if analyze_btn:
     }
 
     if st.session_state.company_name.strip():
-        payload["company_name"] = st.session_state.company_name
+        invoke_request["company_name"] = st.session_state.company_name
     if st.session_state.company_context.strip():
-        payload["custom_company_context"] = st.session_state.company_context
+        invoke_request["custom_company_context"] = st.session_state.company_context
+
+    run_input = RunAgentInput(
+        thread_id=str(uuid.uuid4()),
+        run_id=str(uuid.uuid4()),
+        state={"invoke_request": invoke_request},
+        messages=[UserMessage(id=str(uuid.uuid4()), content=json.dumps(invoke_request))],
+        tools=[],
+        context=[],
+        forwarded_props={},
+    )
 
     result_container = {"result": None, "error": None, "done": False}
 
     def make_request():
         try:
-            response = requests.post(API_URL, json=payload, timeout=300)
-            response.raise_for_status()
-            result_container["result"] = response.json()
-        except requests.exceptions.ConnectionError:
+            last_snapshot = None
+            with httpx.Client(timeout=300) as client:
+                with connect_sse(
+                    client, "POST", API_URL,
+                    content=run_input.model_dump_json(by_alias=True, exclude_none=True),
+                    headers={"Content-Type": "application/json"},
+                ) as sse:
+                    for event in sse.iter_sse():
+                        parsed = event_adapter.validate_json(event.data)
+                        if isinstance(parsed, StateSnapshotEvent):
+                            last_snapshot = parsed.snapshot
+
+            if last_snapshot:
+                result_container["result"] = last_snapshot
+            else:
+                result_container["error"] = "Aucun résultat reçu de l'agent."
+        except httpx.ConnectError:
             result_container["error"] = "Impossible de se connecter à l'API."
-        except requests.exceptions.Timeout:
+        except httpx.TimeoutException:
             result_container["error"] = "Timeout."
         except Exception as e:
             result_container["error"] = str(e)
@@ -548,7 +580,12 @@ if st.session_state.results:
             )
 
             if interactions_insight.get("pain_points"):
-                pain_points_html = "".join([f"<li>{point}</li>" for point in interactions_insight["pain_points"]])
+                pain_points_html = "".join(
+                    [
+                        f"<li>{point}</li>"
+                        for point in interactions_insight["pain_points"]
+                    ]
+                )
                 st.markdown(
                     f"""
                     <div class='insight-section' style='border-left-color: #ef4444;'>
@@ -560,7 +597,12 @@ if st.session_state.results:
                 )
 
             if interactions_insight.get("approach_angles"):
-                angles_html = "".join([f"<li>{angle}</li>" for angle in interactions_insight["approach_angles"]])
+                angles_html = "".join(
+                    [
+                        f"<li>{angle}</li>"
+                        for angle in interactions_insight["approach_angles"]
+                    ]
+                )
                 st.markdown(
                     f"""
                     <div class='insight-section' style='border-left-color: #22c55e;'>

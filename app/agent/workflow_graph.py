@@ -7,6 +7,7 @@ from langgraph.graph import END, StateGraph
 
 from app.agent.graph_state import ChloeState
 from app.agent.context import DEFAULT_COMPANY_CONTEXT
+from app.models.invoke_models import InvokeRequest
 from app.agent.prompts import (
     INTERACTIONS_INSIGHT_PROMPT,
     OUTREACH_MESSAGES_PROMPT,
@@ -52,9 +53,15 @@ async def init_agent(state: ChloeState, config: RunnableConfig):
     logger.info(f"Input state keys: {list(state.keys()) if state else 'Empty state'}")
     logger.info(f"Input config: {config}")
 
+    # Coerce invoke_request from dict to InvokeRequest if needed (AG-UI state arrives as dict)
+    invoke_request = state.get("invoke_request")
+    if isinstance(invoke_request, dict):
+        invoke_request = InvokeRequest(**invoke_request)
+
     output_state = {
+        "invoke_request": invoke_request,
         "date_now": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "warnings": [],  # Initialize warnings list
+        "warnings": [],
     }
     return output_state
 
